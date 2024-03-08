@@ -30,6 +30,7 @@
 }
 
 .ticket {
+  /* background-image: url("/src/img/delete.png"); */
   padding: 10px;
   border:rgb(128, 128, 128) 1px solid;
   display:inline-block;
@@ -37,12 +38,12 @@
 
 .ticket-info-part{
   float:left;
-  background-color: aqua;
+  background-color: rgb(255, 255, 255);
 }
 
 .ticket-update-delete-part{
   float:right;
-  background-color: rebeccapurple;
+  background-color: rgb(255, 255, 255);
 }
 
 
@@ -76,13 +77,13 @@
 }
 
 .ticket-checkbox:checked {
-  background-color: rgb(76, 212, 8);
+  background: url("/src/img/green_check.png") 2px 2px no-repeat;
+  background-size: 90%;
 }
 
 
 .ticket-name {
   margin-left: 25px;
-
   &:hover {
     cursor: pointer;
   }
@@ -93,33 +94,32 @@
 }
 
 .ticket-edit {
+  background: url("/src/img/pane.png") 2px 2px no-repeat;
+  background-size: 80%;
+
   position: relative;
   width: 26px;
   height: 25px;
   font-size: 13px;
   margin-right: 5px;
-  border: var(--border-style);
+  border: solid 1px rgb(128, 128, 128);
   border-radius: 50%;
   cursor: pointer;
-
-  &:hover {
-    background-color: lightgoldenrodyellow;
-  }
 }
 
+
 .ticket-delete {
+  background: url("/src/img/delete.png") 2px 2px no-repeat;
+  background-size: 80%;
+
   position: relative;
   width: 26px;
   height: 25px;
-  font-size: 14px;
-  margin-right: 10px;
-  border: var(--border-style);
+  font-size: 13px;
+  margin-right: 5px;
+  border: solid 1px rgb(128, 128, 128);
   border-radius: 50%;
   cursor: pointer;
-
-  &:hover {
-    background-color: lightcoral;
-  }
 }
 
 .popup {

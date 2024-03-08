@@ -83,7 +83,7 @@ export default class TicketsWidget {
     ticketCheckbox.classList.add("ticket-checkbox");
     ticketCheckbox.type = "checkbox";
     ticketCheckbox.disabled = true;
-    ticketCheckbox.checked = status;
+    ticketCheckbox.checked = true;
     ticketInfo.appendChild(ticketCheckbox);
 
     const ticketName = document.createElement("span");
