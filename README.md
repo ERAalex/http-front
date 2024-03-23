@@ -4,4 +4,6 @@
 
 [See project](https://eraalex.github.io/http-front/)
 
+[Appveyor](https://ci.appveyor.com/project/ERAalex/http-front)
+
 [server part](https://github.com/ERAalex/http-server)
