@@ -1,22 +1,35 @@
-const webpack = require('webpack');
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common');
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 
-module.exports = merge(common, {
-  // Set the mode to development or production
-  mode: 'development',
-  // Control how source maps are generated
-  devtool: 'inline-source-map',
+module.exports = {
+    devServer: {
+        port: 9000
+    },
 
-  // Spin up a server for quick development
-  devServer: {
-    historyApiFallback: true,
-    open: true,
-    compress: true
-  },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCSSExtractPlugin.loader,
+                    "css-loader"
+                ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    },
 
-  plugins: [
-    // Only update what has changed on hot reload
-    new webpack.HotModuleReplacementPlugin(),
-  ],
-});
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/index.html",
+            filename: "index.html"
+        }),
+        new MiniCSSExtractPlugin()
+    ]
+}

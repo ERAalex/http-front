@@ -1,0 +1,56 @@
+# название может быть любым
+name: Espinosa http-front
+
+# по каким событиям должен срабатывать action
+on: [push, pull_request]
+
+# Down scope as necessary via https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
+permissions:
+  checks: write
+  contents: write
+  pages: write
+  id-token: write
+  deployments: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    strategy:
+      matrix:
+        # здесь можно указать по каким версиям ноды это все пропустить, нам нужна пока только 1
+        node-version: [20.x]
+
+    # шаги это и есть actions - это пакеты предустановленные и готовые, которые выполняют некоторые действия
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # устанавливаем нужну версию ноды
+      - name: Install dependencies
+
+        #
+        run: npm install
+
+      # npm run build
+      - name: Build
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "dist"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
