@@ -1,33 +1,35 @@
-const path = require("path");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
-  devServer: {
-    port: 8080,
-  },
-  devtool: "source-map",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-          },
-        ],
-      },
-    ],
-  },
-}
+    devServer: {
+        port: 9000
+    },
 
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCSSExtractPlugin.loader,
+                    "css-loader"
+                ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    },
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/index.html",
+            filename: "index.html"
+        }),
+        new MiniCSSExtractPlugin()
+    ]
+}
