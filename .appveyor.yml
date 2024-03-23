@@ -4,7 +4,7 @@ stack: node 16
 
 branches:
   only:
-    - master
+    - main
 
 install:
   - npm install
